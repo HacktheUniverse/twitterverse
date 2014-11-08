@@ -89,7 +89,6 @@ def integrate(trv, dt, t_max, file_name, accuracy=1e-6, adaptive=False):
 
 def run_orbit():
 
-	print " Kepler orbit using fixed and then adaptive Runge-Kutta"
 	try:
 		r_aphelion   = float(args[1])
 		eccentricity = float(args[2])
