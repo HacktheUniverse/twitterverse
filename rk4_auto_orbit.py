@@ -8,8 +8,8 @@ args = sys.argv
 
 print args
 
-TSTEP        = 0.001
-ACCURACY     = 1.e-6
+TSTEP        = 0.01
+#ACCURACY     = 1.e-6
 
 ###################################################
 ## ORIGINAL CODE (where did we get this?)
@@ -47,11 +47,11 @@ def write_data(file, values):
         file.write(str(value) + "\t")
     file.write("\n")
 
-def integrate(trv, dt, t_max, file_name, accuracy=1e-6, adaptive=True):
+def integrate(trv, dt, t_max, file_name, accuracy=1e-6, adaptive=False):
     file = open(file_name, "w")
     print "\n Initial conditions:"
     print_data(trv)
-    print " Integrating with adaptive step size ..."
+    print " Integrating with fixed step size ..."
     step = 0
     dt_min = dt
     dt_max = dt
@@ -77,7 +77,7 @@ def integrate(trv, dt, t_max, file_name, accuracy=1e-6, adaptive=True):
             break
         step += 1
     file.close()
-    print " Number of adaptive steps = ", step
+    print " Number of fixed steps = ", step
     if adaptive:
         print " Minimum dt = ", dt_min
         print " Maximum dt = ", dt_max
@@ -107,10 +107,10 @@ def run_orbit():
 	print " v_y(0) = ", vy0, " AU/yr"
 	dt  = TSTEP
 	
-	#trv = [ 0, r_aphelion, 0, 0, vy0 ]
-	#integrate(trv, TSTEP, T, filename )
 	trv = [ 0, r_aphelion, 0, 0, vy0 ]
-	integrate(trv, TSTEP, T, filename, accuracy=ACCURACY)
+	integrate(trv, TSTEP, T, filename )
+	#trv = [ 0, r_aphelion, 0, 0, vy0 ]
+	#integrate(trv, TSTEP, T, filename, accuracy=ACCURACY)
 
 	return
 	
